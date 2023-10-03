@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 const port = 3001;
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const authRoute = require("./routes/AuthRoute");
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -21,9 +23,12 @@ db.once("open", () => {
 });
 
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 app.use("/users", require("./routes/userRoutes"));
+
+app.use("/", authRoute);
 
 // TODO - remove later
 app.get("/test", (req, res) => {
