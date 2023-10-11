@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// Apply checkRequired to individual String fields
 userSchema.path("firstName").checkRequired((v) => v != null);
 userSchema.path("lastName").checkRequired((v) => v != null);
 userSchema.path("password").checkRequired((v) => v != null);
