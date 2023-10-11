@@ -6,21 +6,24 @@ const port = 3001;
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/AuthRoute");
+const mongoose = require("mongoose");
 const { MongoClient } = require("mongodb");
+// const bodyParser = require("body-parser");
 
 async function connectToDatabase() {
   try {
-    const client = new MongoClient(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
-    await client.connect();
-    const db = client.db("gtwebdevprojectplatform");
-
-    console.log("Successfully connected to platform");
+    console.log("Connected to the database");
 
     // Now that you're connected, you can start your Express app
     app.use(cors());
     app.use(cookieParser());
     app.use(express.json());
+    // app.use(bodyParser.urlencoded({ extended: true }));
 
     app.use("/users", require("./routes/userRoutes"));
 
