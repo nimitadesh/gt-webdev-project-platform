@@ -30,6 +30,12 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// Apply checkRequired to individual String fields
+userSchema.path("firstName").checkRequired((v) => v != null);
+userSchema.path("lastName").checkRequired((v) => v != null);
+userSchema.path("password").checkRequired((v) => v != null);
+userSchema.path("username").checkRequired((v) => v != null);
+
 userSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, 12);
 });
