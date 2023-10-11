@@ -4,32 +4,42 @@ const express = require("express");
 const app = express();
 const port = 3001;
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const authRoute = require("./routes/AuthRoute");
 const mongoose = require("mongoose");
+const { MongoClient } = require("mongodb");
+// const bodyParser = require("body-parser");
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
-const db = mongoose.connection;
+    console.log("Connected to the database");
 
-console.log("MONGO_URI:", process.env.MONGO_URI);
+    // Now that you're connected, you can start your Express app
+    app.use(cors());
+    app.use(cookieParser());
+    app.use(express.json());
+    // app.use(bodyParser.urlencoded({ extended: true }));
 
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", () => {
-  console.log("Connected to MongoDB!");
-});
+    app.use("/users", require("./routes/userRoutes"));
 
-app.use(cors());
-app.use(express.json());
+    app.use("/", authRoute);
 
-app.use("/users", require("./routes/userRoutes"));
+    // TODO - remove later
+    app.get("/test", (req, res) => {
+      res.send("This is a test endpoint");
+    });
 
-// TODO - remove later
-app.get("/test", (req, res) => {
-  res.send("This is a test endpoint");
-});
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+  }
+}
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+connectToDatabase();
