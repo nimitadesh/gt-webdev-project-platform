@@ -26,10 +26,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-// roles: Admin, Project Manager, Member, Non-Member
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SignUp() {
