@@ -1,7 +1,14 @@
-import * as React from 'react';
+import * as React from "react";
+import IndividualProject from "./IndividualProject";
 
 const Home = () => {
-    return <h1>Home</h1>;
-}
+  return (
+    <IndividualProject
+      projectTitle="testtitle"
+      description="desc"
+      githubRepoUrl="www"
+    />
+  );
+};
 
 export default Home;
