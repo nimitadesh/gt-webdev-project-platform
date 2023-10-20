@@ -1,5 +1,6 @@
 import * as React from "react";
 import ProjectCard from "./ProjectCard";
+import ProjectGallery from "./ProjectGallery";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
           description: "test desc",
         }}
       />
+      <ProjectGallery />
     </div>
   );
 };
