@@ -1,13 +1,18 @@
 import * as React from "react";
-import IndividualProject from "./IndividualProject";
+import ProjectCard from "./ProjectCard";
 
 const Home = () => {
   return (
-    <IndividualProject
-      projectTitle="testtitle"
-      description="desc"
-      githubRepoUrl="www"
-    />
+    <div>
+      <h1>Home</h1>
+      <ProjectCard
+        project={{
+          _id: "01",
+          projectTitle: "title1",
+          description: "test desc",
+        }}
+      />
+    </div>
   );
 };
 
