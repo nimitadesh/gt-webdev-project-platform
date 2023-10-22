@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
 import ProjectCard from "./pages/ProjectCard.jsx";
+import Signup from "./pages/Signup.jsx";
 import React, { useState } from "react";
 
 const testProject = {
@@ -19,7 +20,7 @@ function App() {
           {/* {<Route path="/" element={<ProjectCard project={testProject} />} />} */}
           {<Route path="/" element={<Home />} />}
           {<Route path="/login" element={<Login />} />}
-          {/* {<Route path="/signup" element={<Signup />} /> } */}
+          {<Route path="/signup" element={<Signup />} />}
         </Routes>
       </div>
     </BrowserRouter>
