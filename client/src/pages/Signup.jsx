@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -77,43 +77,37 @@ export default function SignUp() {
       position: "bottom-right",
     });
 
-  const handleSubmit = (e) => {
-    // event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('username'),
-    //   password: data.get('password'),
-    // });
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "http://localhost:3001/signup",
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
-      const { success, message } = data;
-      if (success) {
-        handleSuccess(message);
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      } else {
-        handleError(message);
+    const handleSubmit = async (e) => { // Add async keyword here
+      e.preventDefault();
+      try {
+        const { data } = await axios.post(
+          "http://localhost:3001/signup",
+          {
+            ...inputValue,
+          },
+          { withCredentials: true }
+        );
+        const { success, message } = data;
+        if (success) {
+          handleSuccess(message);
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
+        } else {
+          handleError(message);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-    setInputValue({
-      ...inputValue,
-      firstName: "",
-      lastName: "",
-      username: "",
-      password: "",
-      roles: [],
-    });
-  };
+      setInputValue({
+        ...inputValue,
+        firstName: "",
+        lastName: "",
+        username: "",
+        password: "",
+        roles: [],
+      });
+    };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -185,18 +179,12 @@ export default function SignUp() {
                 onChange={handleOnChange}
               />    
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
             </Grid>
             <Divider sx={{ mt: 2, mb: 2 }} />
             <Grid item xs={12}>
               <Typography variant="h6" sx={{ textAlign: 'center' }}>Select Roles:</Typography>
               <Grid item xs={12}>
-                <Grid container justifyContent="center">
+                <Grid container justifyContent="left">
                   {/* <Grid item>
                     <FormControlLabel
                       control={<Checkbox
@@ -224,7 +212,7 @@ export default function SignUp() {
               </Grid>
 
               <Grid item xs={12}>
-                <Grid container justifyContent="center">
+                <Grid container justifyContent="left">
                   <Grid item>
                     <FormControlLabel
                       control={<Checkbox
@@ -237,6 +225,11 @@ export default function SignUp() {
                       label="Member"
                     />
                   </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Grid container justifyContent="left">
                   <Grid item>
                   <FormControlLabel
                     control={<Checkbox

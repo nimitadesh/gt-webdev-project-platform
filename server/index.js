@@ -20,7 +20,12 @@ async function connectToDatabase() {
     console.log("Connected to the database");
 
     // Now that you're connected, you can start your Express app
-    app.use(cors());
+    app.use(
+      cors({
+        origin: "http://localhost:3000", // Allow requests from your React app
+        credentials: true, // Allow credentials (cookies, HTTP authentication)
+      })
+    );
     app.use(cookieParser());
     app.use(express.json());
     // app.use(bodyParser.urlencoded({ extended: true }));
