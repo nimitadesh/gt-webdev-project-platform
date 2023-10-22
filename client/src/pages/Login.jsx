@@ -165,9 +165,9 @@ export default function Login() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                <a href="http://localhost:3000/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
-                  </Link>
+                </a>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
