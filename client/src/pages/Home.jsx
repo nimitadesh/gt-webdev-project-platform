@@ -4,6 +4,8 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import ProjectCard from "./ProjectCard";
+import IndividualProject from "./IndividualProject";
+import NavBar from "./NavBar";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -35,10 +37,11 @@ const Home = () => {
   };
   return (
     <div>
-      <h1>Welcome, <span>{username}</span></h1>
+      <NavBar />
+      <h1>Home</h1>
       <ProjectCard
         project={{
-          _id: "01",
+          _id: "6526d1d3ec31e99d36bb50fc",
           projectTitle: "title1",
           description: "test desc",
         }}
