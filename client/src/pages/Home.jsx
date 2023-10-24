@@ -6,13 +6,13 @@ const Home = () => {
   return (
     <div>
       <h1>Home</h1>
-      <ProjectCard
+      {/* <ProjectCard
         project={{
           _id: "01",
           projectTitle: "title1",
           description: "test desc",
         }}
-      />
+      /> */}
       <ProjectGallery />
     </div>
   );
