@@ -5,23 +5,27 @@ const ProjectGallery = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    // Replace 'your-api-endpoint' with your actual API endpoint for fetching projects.
     fetch('http://localhost:3001/projects', {
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then(response => {
-        // console.log(response.json);
-        response.json()})
-      .then(data => {
-        // console.log(data);
-        setProjects(data)
-        console.log("Projects")
-        console.log(projects)
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
       })
-      .catch(error => console.error(error));
+      .then(data => {
+        setProjects(data);
+        console.log("Projects inside useEffect");
+        console.log(projects); 
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }, []);
+  
 
 
   return (
