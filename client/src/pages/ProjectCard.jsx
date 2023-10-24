@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const ProjectCard = ({ project }) => {
   const { _id, projectTitle, description } = project;
-  const history = useNavigate();
+  const navigate = useNavigate();
   const handleLearnMoreClick = () => {
-    history.push(`project/${_id}`);
+    navigate(`/projects/${project._id}`);
   };
 
   return (
