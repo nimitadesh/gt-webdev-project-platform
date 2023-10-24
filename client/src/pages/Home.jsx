@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import ProjectCard from "./ProjectCard";
 import IndividualProject from "./IndividualProject";
 import NavBar from "./NavBar";
+import ProjectGallery from "./ProjectGallery";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -39,13 +40,7 @@ const Home = () => {
     <div>
       <NavBar />
       <h1>Home</h1>
-      <ProjectCard
-        project={{
-          _id: "6526d1d3ec31e99d36bb50fc",
-          projectTitle: "title1",
-          description: "test desc",
-        }}
-      />
+      <ProjectGallery />
       <button onClick={Logout}>LOGOUT</button>
     </div>
   );
