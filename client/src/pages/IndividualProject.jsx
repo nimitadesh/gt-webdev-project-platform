@@ -30,4 +30,31 @@ const IndividualProject = () => {
   );
 };
 
+async function getContributors(repoName, page = 1) {  
+  let request = await fetch(`https://api.github.com/repos/${repoName}/contributors?per_page=100&page=${page}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      }
+  });
+
+  // print data from the fetch on screen
+  let contributorsList = await request.json();
+  return contributorsList;
+};
+
+
+async function getAllContributors(repoName) {
+  let contributors = [];
+  let page = 1;
+  do {
+      list = await getContributors(repoName, page);
+      contributors = contributors.concat(list);
+      page++;
+  } while (list.length > 0);
+  // while (list.length%100 !== 0)
+  return contributors;
+}
+
+
 export default IndividualProject;
