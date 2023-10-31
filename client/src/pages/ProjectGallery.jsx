@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import ProjectCard from "./ProjectCard";
+import React, { useEffect, useState } from 'react';
+import ProjectCard from './ProjectCard';
+import SearchBar from 'material-ui-search-bar';
 
 const ProjectGallery = () => {
   const [projects, setProjects] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(''); // State variable for search query
 
   useEffect(() => {
     fetch("http://localhost:3001/projects", {
@@ -26,22 +28,32 @@ const ProjectGallery = () => {
       });
   }, []);
 
+  // Filter projects based on the searchQuery
+  const filteredProjects = projects.filter(project => {
+    // Check if project.title and searchQuery are defined before applying toLowerCase
+    return (
+      project.projectTitle && searchQuery &&
+      project.projectTitle.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
+  
+
   return (
-    <div
-      className="project-gallery"
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        gap: "1.5rem",
-      }}
-    >
-      {projects ? (
-        projects.map((project) => (
+    <div className="project-gallery">
+      {/* Add the Material-UI SearchBar */}
+      <SearchBar
+        value={searchQuery}
+        onChange={newValue => setSearchQuery(newValue)}
+        onRequestSearch={() => console.log(searchQuery)}
+      />
+
+      {filteredProjects.length > 0 ? (
+        filteredProjects.map(project => (
           <ProjectCard key={project._id} project={project} />
         ))
       ) : (
-        <p>Loading...</p>
+        <p>No projects found.</p>
+
       )}
     </div>
   );
