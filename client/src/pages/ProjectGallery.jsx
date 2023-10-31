@@ -32,8 +32,10 @@ const ProjectGallery = () => {
   const filteredProjects = projects.filter(project => {
     // Check if project.title and searchQuery are defined before applying toLowerCase
     return (
-      project.projectTitle && searchQuery &&
-      project.projectTitle.toLowerCase().includes(searchQuery.toLowerCase())
+      (project.projectTitle &&
+      project.projectTitle.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (project.description && 
+      project.description.toLowerCase().includes(searchQuery.toLowerCase()))
     );
   });
   
