@@ -39,13 +39,22 @@ const ProjectGallery = () => {
   
 
   return (
-    <div className="project-gallery">
-      {/* Add the Material-UI SearchBar */}
+    <div>
       <SearchBar
         value={searchQuery}
         onChange={newValue => setSearchQuery(newValue)}
         onRequestSearch={() => console.log(searchQuery)}
       />
+      <div
+      className="project-gallery"
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        gap: "1.5rem",
+      }}
+    >
+      {/* Add the Material-UI SearchBar */}
 
       {filteredProjects.length > 0 ? (
         filteredProjects.map(project => (
@@ -56,6 +65,7 @@ const ProjectGallery = () => {
 
       )}
     </div>
+      </div>
   );
 };
 
