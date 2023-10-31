@@ -1,45 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import ProjectCard from './ProjectCard';
+import React, { useEffect, useState } from "react";
+import ProjectCard from "./ProjectCard";
 
 const ProjectGallery = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/projects', {
+    fetch("http://localhost:3001/projects", {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setProjects(data);
         console.log("Projects inside useEffect");
-        console.log(projects); 
+        console.log(projects);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
-  
-
 
   return (
-    <div className="project-gallery">
+    <div
+      className="project-gallery"
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        gap: "1.5rem",
+      }}
+    >
       {projects ? (
-  projects.map(project => (
-    <ProjectCard key={project._id} project={project} />
-  ))
-) : (
-  <p>Loading...</p>
-)}
-
+        projects.map((project) => (
+          <ProjectCard key={project._id} project={project} />
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
-}
+};
 
 export default ProjectGallery;
