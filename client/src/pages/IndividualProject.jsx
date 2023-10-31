@@ -34,7 +34,7 @@ const IndividualProject = () => {
       <a href={url} target="blank" rel="noopener noreferrer">
         Github Repository
       </a>
-      <ProgrammingLanguages  repoName={input}/>
+      <ProgrammingLanguages repoName={input}/>
     </div>
   );
 };
