@@ -7,23 +7,23 @@ const ProjectGallery = () => {
   const [searchQuery, setSearchQuery] = useState(''); // State variable for search query
 
   useEffect(() => {
-    fetch('http://localhost:3001/projects', {
+    fetch("http://localhost:3001/projects", {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setProjects(data);
         console.log("Projects inside useEffect");
         console.log(projects);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
@@ -53,9 +53,10 @@ const ProjectGallery = () => {
         ))
       ) : (
         <p>No projects found.</p>
+
       )}
     </div>
   );
-}
+};
 
 export default ProjectGallery;
