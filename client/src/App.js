@@ -5,6 +5,8 @@ import ProjectCard from "./pages/ProjectCard.jsx";
 import Signup from "./pages/Signup.jsx";
 import IndividualProject from "./pages/IndividualProject";
 import React, { useState } from "react";
+import Projects from "./pages/Projects.jsx";
+import Users from "./pages/Users.jsx";
 
 const testProject = {
   _id: 1,
@@ -28,6 +30,8 @@ function App() {
               element={<IndividualProject />}
             />
           }
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/users" element={<Users />} /> 
         </Routes>
       </div>
     </BrowserRouter>
