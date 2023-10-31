@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProgrammingLanguages from "./ProgrammingLanguages";
+import NavBar from "./NavBar";
+import "./styles/IndividualProject.css";
 
 const IndividualProject = () => {
   const { projectId } = useParams();
@@ -18,23 +20,53 @@ const IndividualProject = () => {
   }
 
   console.log("Project: ");
-  console.log(project)
+  console.log(project);
 
-  const url = 'https://github.com/nimitadesh/gt-webdev-project-platform';
-  const urlArr = url.split('/');
+  const url = "https://github.com/nimitadesh/gt-webdev-project-platform";
+  const urlArr = url.split("/");
   const reponame = urlArr.pop();
   const user = urlArr.pop();
   const input = user + "/" + reponame;
   console.log(input);
 
   return (
-    <div>
-      <h1>{project.projectTitle}</h1>
-      <p>{project.description}</p> 
-      <a href={url} target="blank" rel="noopener noreferrer">
-        Github Repository
-      </a>
-      <ProgrammingLanguages repoName={input}/>
+    <div className="IndividualProject">
+      <NavBar />
+      <div className="header">
+        <h1>{project.projectTitle}</h1>
+        <p>{project.description}</p>
+        <div className="header-links">
+          <a
+            href={"#"}
+            target="blank"
+            rel="noopener noreferrer"
+            className="like"
+          >
+            Like
+          </a>
+          <a
+            href={"#"}
+            target="blank"
+            rel="noopener noreferrer"
+            className="comment"
+          >
+            Comment
+          </a>
+          <a
+            href={url}
+            target="blank"
+            rel="noopener noreferrer"
+            className="github"
+          >
+            Github Repository
+          </a>
+        </div>
+      </div>
+      <div className="project-content">
+        <div className="content-left"></div>
+        <div className="content-right"></div>
+        <ProgrammingLanguages repoName={input} />
+      </div>
     </div>
   );
 };
