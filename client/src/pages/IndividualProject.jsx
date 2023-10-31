@@ -62,7 +62,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Contributors from './Contributors'; // Import the Contributors component
+import Contributors from './Contributors'; 
 
 const IndividualProject = () => {
   const { projectId } = useParams();
@@ -84,13 +84,13 @@ const IndividualProject = () => {
       <h1>{project.projectTitle}</h1>
       <p>{project.description}</p>
       <a
-        href={project.githubUrl} // Make sure your project object has a githubUrl property
+        href={project.githubUrl} 
         target="_blank"
         rel="noopener noreferrer"
       >
         Github Repository
       </a>
-      <Contributors repoUrl={project.githubUrl} /> {/* Pass the GitHub URL to Contributors component */}
+      <Contributors repoUrl={'https://github.com/nimitadesh/gt-webdev-project-platform'} />
     </div>
   );
 };
