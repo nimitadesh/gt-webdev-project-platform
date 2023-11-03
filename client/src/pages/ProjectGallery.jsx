@@ -1,10 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import ProjectCard from './ProjectCard';
 import SearchBar from 'material-ui-search-bar';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  searchBar: {
+    // Your custom styles for the SearchBar component
+    backgroundColor: 'lightgray',
+    borderRadius: '8px',
+    padding: '8px',
+    '& input': {
+      // Custom styles for the input element
+      backgroundColor: 'transparent',
+      border: 'none',
+      fontSize: '16px',
+    },
+  },
+}));
 
 const ProjectGallery = () => {
   const [projects, setProjects] = useState([]);
   const [searchQuery, setSearchQuery] = useState(''); // State variable for search query
+  const classes = useStyles();
 
   useEffect(() => {
     fetch("http://localhost:3001/projects", {
@@ -41,6 +58,7 @@ const ProjectGallery = () => {
   return (
     <div>
       <SearchBar
+        className={classes.searchBar} 
         value={searchQuery}
         onChange={newValue => setSearchQuery(newValue)}
         onRequestSearch={() => console.log(searchQuery)}

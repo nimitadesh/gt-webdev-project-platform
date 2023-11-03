@@ -1,3 +1,4 @@
+import NavBar from "./NavBar";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProgrammingLanguages from "./ProgrammingLanguages";
@@ -29,6 +30,7 @@ const IndividualProject = () => {
 
   return (
     <div>
+      <NavBar />
       <h1>{project.projectTitle}</h1>
       <p>{project.description}</p> 
       <a href={url} target="blank" rel="noopener noreferrer">
