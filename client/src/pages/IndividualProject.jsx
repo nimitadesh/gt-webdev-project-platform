@@ -23,7 +23,7 @@ const IndividualProject = () => {
   console.log("Project: ");
   console.log(project);
 
-  const url = 'https://github.com/nimitadesh/gt-webdev-project-platform';
+  const url = project.githubRepoUrl;
   const urlArr = url.split('/');
   const reponame = urlArr.pop();
   const user = urlArr.pop();
