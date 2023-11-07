@@ -1,3 +1,4 @@
+
 // import React, { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 
@@ -63,6 +64,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Contributors from './Contributors'; 
+import NavBar from "./NavBar";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ProgrammingLanguages from "./ProgrammingLanguages";
 
 const IndividualProject = () => {
   const { projectId } = useParams();
@@ -79,8 +84,19 @@ const IndividualProject = () => {
     return <div>Loading...</div>;
   }
 
+  console.log("Project: ");
+  console.log(project)
+
+  const url = 'https://github.com/nimitadesh/gt-webdev-project-platform';
+  const urlArr = url.split('/');
+  const reponame = urlArr.pop();
+  const user = urlArr.pop();
+  const input = user + "/" + reponame;
+  console.log(input);
+
   return (
     <div>
+      <NavBar />
       <h1>{project.projectTitle}</h1>
       <p>{project.description}</p>
       <a
@@ -91,6 +107,7 @@ const IndividualProject = () => {
         Github Repository
       </a>
       <Contributors repoUrl={'https://github.com/nimitadesh/gt-webdev-project-platform'} />
+      <ProgrammingLanguages repoName={input}/>
     </div>
   );
 };
