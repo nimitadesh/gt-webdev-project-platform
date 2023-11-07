@@ -4,7 +4,13 @@ const bcrypt = require("bcrypt");
 
 const getAllUsers = asyncHandler(async (req, res) => {
   // TODO: Replace with actual code
-  res.send("This is a test endpoint (getAllUsers)");
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    console.error();
+    res.status(500).json({ message: 'Server error'});
+  }
 });
 
 const createNewUser = asyncHandler(async (req, res) => {
@@ -37,9 +43,25 @@ const deleteUser = asyncHandler(async (req, res) => {
   res.json(reply);
 });
 
+const getUsernamebyUserId = asyncHandler(async (req, res) => {
+  try {
+    const Id = req.params.id;
+    const user = await User.findById(Id);
+
+    if (!user) {
+        return res.status(404).json({ message: 'User not found'});
+    }
+
+    res.json(user.username);
+} catch (error) {
+    return res.status(500).json({ message: 'Server error'});
+}
+});
+
 module.exports = {
   getAllUsers,
   createNewUser,
   updateUser,
   deleteUser,
+  getUsernamebyUserId
 };
