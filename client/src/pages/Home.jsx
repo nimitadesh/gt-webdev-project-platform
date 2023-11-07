@@ -6,7 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import ProjectCard from "./ProjectCard";
 import IndividualProject from "./IndividualProject";
-import NavBar from "./NavBar";
+// import NavBar from "./NavBar";
 import ProjectGallery from "./ProjectGallery";
 
 const Home = () => {
