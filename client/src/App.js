@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import ProjectCard from "./pages/ProjectCard.jsx";
 import Signup from "./pages/Signup.jsx";
 import IndividualProject from "./pages/IndividualProject";
+import Dashboard from "./pages/Dashboard.jsx";
 import React, { useState } from "react";
 import Projects from "./pages/Projects.jsx";
 import Users from "./pages/Users.jsx";
@@ -24,6 +25,7 @@ function App() {
           {<Route path="/" element={<Home />} />}
           {<Route path="/login" element={<Login />} />}
           {<Route path="/signup" element={<Signup />} />}
+          {<Route path="/dashboard/:username" element={<Dashboard />} />}
           {
             <Route
               path="/projects/:projectId"
