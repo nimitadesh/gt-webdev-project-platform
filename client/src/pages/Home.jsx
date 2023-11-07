@@ -1,3 +1,4 @@
+import NavBar from "./NavBar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -40,7 +41,6 @@ const Home = () => {
     <div>
       <NavBar />
       <h1>Home</h1>
-      <ProjectGallery />
       <button onClick={Logout}>LOGOUT</button>
     </div>
   );
