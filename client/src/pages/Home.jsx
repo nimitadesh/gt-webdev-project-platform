@@ -1,3 +1,4 @@
+import NavBar from "./NavBar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -5,7 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import ProjectCard from "./ProjectCard";
 import IndividualProject from "./IndividualProject";
-import NavBar from "./NavBar";
+// import NavBar from "./NavBar";
 import ProjectGallery from "./ProjectGallery";
 
 const Home = () => {
@@ -40,7 +41,6 @@ const Home = () => {
     <div>
       <NavBar />
       <h1>Home</h1>
-      <ProjectGallery />
       <button onClick={Logout}>LOGOUT</button>
     </div>
   );
