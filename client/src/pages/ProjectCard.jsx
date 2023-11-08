@@ -28,9 +28,6 @@ const ProjectCard = ({ project }) => {
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          {imageUrl}
-        </Typography> */}
       </CardContent>
       <CardActions>
         <Button size="small" onClick={handleLearnMoreClick}>
