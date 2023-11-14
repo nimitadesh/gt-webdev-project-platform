@@ -1,67 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import Avatar from '@mui/material/Avatar';
+import { toast } from 'react-toastify';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function CommentForm() {
-  const navigate = useNavigate();
+function CommentForm({ projectId }) {
   const [comment, setComment] = useState('');
+  const [comments, setComments] = useState([]); // State to store comments
+
+  // Function to fetch comments
+  const getComments = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/comments/${projectId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const commentsData = await response.json();
+      setComments(commentsData); // Assuming the API returns an array of comments
+    } catch (error) {
+      console.error('Error fetching comments', error);
+      toast.error('Failed to fetch comments');
+    }
+  };
+
+  // Fetch comments when the component mounts or when a new comment is added
+  useEffect(() => {
+    getComments();
+  }, [projectId]); // Only depend on projectId to refetch when the component mounts or projectId changes
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
 
-  const handleError = (err) =>
-    toast.error(err, {
-      position: 'bottom-left',
-    });
-
-  const handleSuccess = (msg) =>
-    toast.success(msg, {
-      position: 'bottom-left',
-    });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      // Send a POST request to the backend API endpoint for adding comments
-      const response = await axios.post(
-        '/api/comments',
-        {
-          project: projectId, // Replace with the project ID associated with the comment
-          user: userId,       // Replace with the user ID posting the comment
-          text: comment,
-        },
-        { withCredentials: true }
-      );
+      const response = await axios.post("http://localhost:3001/comments", {
+        project: projectId,
+        text: comment,
+      }, { withCredentials: true });
 
-      // Handle the response from the backend
       if (response.data.success) {
-        // Comment posted successfully
-        handleSuccess(response.data.message);
-        // Clear the comment input field
+        toast.success(response.data.message);
         setComment('');
+        getComments(); // Re-fetch comments after successfully adding a new one
       } else {
-        // Error posting comment
-        handleError(response.data.error);
+        toast.error(response.data.error);
       }
     } catch (error) {
       console.error('Error posting comment', error);
-      handleError('Failed to post comment');
+      toast.error('Failed to post comment');
     }
+  };
+
+  // Function to render comments
+  const renderComments = () => {
+    return comments.map((comment, index) => (
+      <div key={index}> {/* Use a more reliable key in production */}
+        <p>{comment.text}</p> {/* Replace with whatever fields your comment objects have */}
+      </div>
+    ));
   };
 
   return (
@@ -88,6 +89,9 @@ function CommentForm() {
           Submit Comment
         </Button>
       </form>
+      <div>
+        {renderComments()}
+      </div>
     </Box>
   );
 }
