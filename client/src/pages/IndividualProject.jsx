@@ -4,6 +4,7 @@ import Contributors from './Contributors';
 import ProgrammingLanguages from './ProgrammingLanguages';
 import NavBar from './NavBar';
 import './styles/IndividualProject.css';
+import CommentForm from './CommentForm';
 
 const IndividualProject = () => {
   const { projectId } = useParams();
@@ -45,6 +46,7 @@ const IndividualProject = () => {
           >
             Like
           </a>
+          <CommentForm projectId={projectId} /> {/* Pass projectId as a prop */}
           <a
             href="#"
             target="_blank"
