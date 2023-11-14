@@ -43,6 +43,36 @@ const IndividualProject = () => {
     },
   }));
 
+  const handleLike = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3001/like",
+        {
+          ...inputValue,
+        },
+        { withCredentials: true }
+      );
+      const { success, message } = data;
+      if (success) {
+        handleSuccess(message);
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      } else {
+        handleError(message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setInputValue({
+      ...inputValue,
+      project: "",
+      user: "",
+      createdAt: "",
+    });
+  };
+
   return (
     <div className="IndividualProject">
       <NavBar />
@@ -50,7 +80,7 @@ const IndividualProject = () => {
         <h1>{project.projectTitle}</h1>
         <p>{project.description}</p>
         <div className="header-links">
-          <Stack spacing={2} direction="row">
+          <Stack spacing={2} direction="row" onClick={handleLike}>
             <ColorButton variant="contained">
               Custom CSS
               <FavoriteBorderIcon />
