@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/dashboard/${username}`)
+    fetch(`http://localhost:3001/users/username/${username}`)
       .then((response) => response.json())
       .then((data) => setUser(data))
       .catch((error) => console.log(error));
