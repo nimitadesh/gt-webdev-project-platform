@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const contributionsController = require("../controllers/contributionsController");
 
-router.get("/:projectId", contributionsController.getProjectsByUserId);
+router.get("/getUsers/:projectId", contributionsController.getUsersbyProjectId);
+router.get("/getProjects/:userId", contributionsController.getProjectsByUserId);
 
 module.exports = router;
