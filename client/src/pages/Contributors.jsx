@@ -40,4 +40,16 @@ async function getContributors(repoName) {
   return contributorsList;
 };
 
+async function getAllContributors(repoName) {
+  let contributors = [];
+  let page = 1;
+  do {
+      var list = await getContributors(repoName);
+      contributors = contributors.concat(list);
+      page++;
+  } while (list.length > 0);
+  // while (list.length%100 !== 0)
+  return contributors;
+}
+
 export default Contributors;

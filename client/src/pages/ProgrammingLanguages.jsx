@@ -41,4 +41,16 @@ async function getLanguages(repoName) {
   return Object.keys(languagesList); // Convert the object keys to an array of languages.
 }
 
+async function getAllLanguages(repoName) {
+  let languages = [];
+  let page = 1;
+  do {
+      var list = await getLanguages(repoName);
+      languages = languages.concat(list);
+      page++;
+  } while (list.length > 0);
+  // while (list.length%100 !== 0)
+  return languages;
+}
+
 export default ProgrammingLanguages;
