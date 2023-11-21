@@ -1,4 +1,5 @@
 const Contribution = require("../models/Contribution");
+const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 const ObjectId = require("mongoose").Types.ObjectId;
 
@@ -13,7 +14,17 @@ const getUsersbyProjectId = asyncHandler(async (req, res) => {
     if (!users) {
       return res.status(404).json({ message: "Contributers not found" });
     }
-    const result = users.map((item) => ({ user_id: item.user_id }));
+
+    const usersAsJson = users.map((item) => ({ user_id: item.user_id }));
+    const result = await Promise.all(
+      usersAsJson.map(async (userJson) => {
+        const user = await User.findOne({
+          _id: userJson.user_id,
+        });
+        return { ...userJson, username: user.username };
+      })
+    );
+
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: "Server error" + error });
