@@ -1,4 +1,4 @@
-const Comment = require('../models/Comments');
+const Comment = require('../models/Comment');
 
 // Controller function to add a comment
 exports.addComment = async (req, res) => {
@@ -38,7 +38,7 @@ exports.addComment = async (req, res) => {
 exports.getCommentsForProject = async (req, res) => {
   try {
     const { projectId } = req.params;
-    const comments = await Comment.find({ project: projectId }).sort({ createdAt: -1 }); // Assuming you have a createdAt field for sorting
+    const comments = await Comment.find({ project: projectId }).sort({ createdAt: -1 });    
     res.json(comments);
   } catch (error) {
     console.error(error);

@@ -4,7 +4,7 @@ import Contributors from './Contributors';
 import ProgrammingLanguages from './ProgrammingLanguages';
 import NavBar from './NavBar';
 import './styles/IndividualProject.css';
-import CommentForm from './CommentForm';
+import CommentForm from './CommentForm'
 
 const IndividualProject = () => {
   const { projectId } = useParams();
@@ -46,15 +46,15 @@ const IndividualProject = () => {
           >
             Like
           </a>
-          <CommentForm projectId={projectId} /> {/* Pass projectId as a prop */}
-          <a
+          {/* <CommentForm projectId={projectId} /> Pass projectId as a prop */}
+          {/* <a
             href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="comment"
           >
             Comment
-          </a>
+          </a> */}
           <a
             href={url}
             target="_blank"
@@ -71,6 +71,7 @@ const IndividualProject = () => {
       </div>
       <Contributors repoUrl={'https://github.com/nimitadesh/gt-webdev-project-platform'} />
       <ProgrammingLanguages repoName={input}/>
+      <CommentForm projectId={projectId} />
     </div>
   );
 };
