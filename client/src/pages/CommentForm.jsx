@@ -38,8 +38,9 @@ function CommentForm({ projectId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/comments", {
+      const response = await axios.post("http://localhost:3001/comments/${projectId}", {
         project: projectId,
+        user:"65260c42f6df3a949de673b3",
         text: comment,
       }, { withCredentials: true });
 
@@ -59,8 +60,8 @@ function CommentForm({ projectId }) {
   // Function to render comments
   const renderComments = () => {
     return comments.map((comment, index) => (
-      <div key={index}> {/* Use a more reliable key in production */}
-        <p>{comment.text}</p> {/* Replace with whatever fields your comment objects have */}
+      <div key={index}> 
+        <p>{comment.text}</p> 
       </div>
     ));
   };
