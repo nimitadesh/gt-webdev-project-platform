@@ -8,6 +8,9 @@ import './styles/IndividualProject.css';
 const IndividualProject = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
+  const currentUser = localStorage.getItem('user');
+  console.log("Current user: ");
+  console.log(currentUser);
 
   useEffect(() => {
     fetch(`http://localhost:3001/projects/${projectId}`)

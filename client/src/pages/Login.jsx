@@ -68,8 +68,9 @@ export default function Login() {
         { withCredentials: true }
       );
       console.log(data);
-      const { success, message } = data;
+      const { success, message, user } = data;
       if (success) {
+        localStorage.setItem('user', JSON.stringify(user));
         handleSuccess(message);
         setTimeout(() => {
           navigate("/");
