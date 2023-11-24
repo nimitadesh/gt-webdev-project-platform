@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const projectsController = require("../controllers/likesController");
+const likesController = require("../controllers/likesController");
 
-router.get("/like", likesController.createNewLike);
+router.route("/").post(likesController.createNewLike);
 
 module.exports = router;
