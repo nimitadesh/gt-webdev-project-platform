@@ -9,11 +9,13 @@ import Stack from "@mui/material/Stack";
 import { purple } from "@mui/material/colors";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./styles/IndividualProject.css";
+import axios from "axios";
 
 const IndividualProject = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
-  const currentUser = localStorage.getItem('user');
+  const currentUserString = localStorage.getItem('user');
+  const currentUser = JSON.parse(currentUserString);
   console.log("Current user: ");
   console.log(currentUser);
 
@@ -50,30 +52,16 @@ const IndividualProject = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/like",
+        "http://localhost:3001/likes",
         {
-          ...inputValue,
+          project: projectId,
+          user: currentUser._id,
         },
         { withCredentials: true }
       );
-      const { success, message } = data;
-      if (success) {
-        handleSuccess(message);
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      } else {
-        handleError(message);
-      }
     } catch (error) {
       console.log(error);
     }
-    setInputValue({
-      ...inputValue,
-      project: "",
-      user: "",
-      createdAt: "",
-    });
   };
 
   return (
@@ -85,7 +73,7 @@ const IndividualProject = () => {
         <div className="header-links">
           <Stack spacing={2} direction="row" onClick={handleLike}>
             <ColorButton variant="contained">
-              Custom CSS
+              Like
               <FavoriteBorderIcon />
             </ColorButton>
           </Stack>
