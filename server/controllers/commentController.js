@@ -1,7 +1,7 @@
-const Comment = require('../models/Comments');
+const Comment = require('../models/Comment');
 
 // Controller function to add a comment
-exports.addComment = async (req, res, next) => {
+exports.addComment = async (req, res) => {
   try {
     const { project, user, text } = req.body;
 
@@ -27,12 +27,21 @@ exports.addComment = async (req, res, next) => {
       comment,
     });
 
-    // Call the next middleware if needed
-    next();
   } catch (error) {
     console.error(error);
-
     // Handle any errors and respond with an error message
     res.status(500).json({ error: 'Failed to add comment' });
+  }
+};
+
+// Controller function to get comments for a specific project
+exports.getCommentsForProject = async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const comments = await Comment.find({ project: projectId }).sort({ createdAt: -1 });    
+    res.json(comments);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to get comments", error: error });
   }
 };

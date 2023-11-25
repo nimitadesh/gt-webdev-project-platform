@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const commentsSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
   project: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Project",
@@ -22,4 +22,4 @@ const commentsSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Comments", commentsSchema);
+module.exports = mongoose.model("Comment", commentSchema);

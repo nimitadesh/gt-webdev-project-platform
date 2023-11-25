@@ -1,3 +1,4 @@
+import CommentForm from './CommentForm'
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Contributors from "./Contributors";
@@ -71,20 +72,6 @@ const IndividualProject = () => {
         <h1>{project.projectTitle}</h1>
         <p>{project.description}</p>
         <div className="header-links">
-          <Stack spacing={2} direction="row" onClick={handleLike}>
-            <ColorButton variant="contained">
-              Like
-              <FavoriteBorderIcon />
-            </ColorButton>
-          </Stack>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="comment"
-          >
-            Comment
-          </a>
           <a
             href={url}
             target="_blank"
@@ -99,10 +86,10 @@ const IndividualProject = () => {
         <div className="content-left"></div>
         <div className="content-right"></div>
       </div>
-      <Contributors
-        repoUrl={"https://github.com/nimitadesh/gt-webdev-project-platform"}
-      />
-      <ProgrammingLanguages repoName={input} />
+      <Contributors repoUrl={'https://github.com/nimitadesh/gt-webdev-project-platform'} />
+      <ProgrammingLanguages repoName={input}/>
+      <CommentForm projectId={projectId} />
+
     </div>
   );
 };
