@@ -1,0 +1,43 @@
+.IndividualProject .header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  background-color: #14245c;
+  color: white;
+}
+
+.IndividualProject h1 {
+  margin: 0;
+}
+
+.IndividualProject p {
+  /* margin: 0; */
+}
+
+.IndividualProject .header-links {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.IndividualProject .header a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 7px;
+}
+
+a.like {
+  background-color: #29c5cf;
+}
+
+a.comment {
+  background-color: #fec23b;
+}
+
+a.github {
+  background-color: #1677fa;
+}
