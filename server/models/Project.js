@@ -13,6 +13,10 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  languages: {
+    type: [String],
+    required: true,
+  }
 });
 
 module.exports = mongoose.model("Project", projectSchema);
