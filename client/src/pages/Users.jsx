@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import NavBar from "./NavBar"; // Import the NavBar component
 
 
@@ -41,3 +42,5 @@ const Users = () => {
 };
 
 export default Users;
+
+
