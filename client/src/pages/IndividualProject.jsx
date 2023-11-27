@@ -71,7 +71,22 @@ const IndividualProject = () => {
       <div className="header">
         <h1>{project.projectTitle}</h1>
         <p>{project.description}</p>
+        
         <div className="header-links">
+          <Stack spacing={2} direction="row" onClick={handleLike}>
+            <ColorButton variant="contained">
+              Like
+              <FavoriteBorderIcon />
+            </ColorButton>
+          </Stack>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="comment"
+          >
+            Comment
+          </a>
           <a
             href={url}
             target="_blank"
@@ -88,7 +103,7 @@ const IndividualProject = () => {
       </div>
       <Contributors repoUrl={'https://github.com/nimitadesh/gt-webdev-project-platform'} />
       <ProgrammingLanguages repoName={input}/>
-      <CommentForm projectId={projectId} />
+      <CommentForm projectId={projectId} userId={currentUser._id} />
 
     </div>
   );
