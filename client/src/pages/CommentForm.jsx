@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import "./styles/CommentForm.css";
 
+
 function CommentForm({ projectId }) {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]); // State to store comments
@@ -42,15 +43,11 @@ function CommentForm({ projectId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:3001/comments/${projectId}",
-        {
-          project: projectId,
-          user: "65260c42f6df3a949de673b3",
-          text: comment,
-        },
-        { withCredentials: true }
-      );
+      const response = await axios.post("http://localhost:3001/comments", {
+        project: projectId,
+        user: userId,
+        text: comment,
+      }, { withCredentials: true });
 
       if (response.data.success) {
         toast.success(response.data.message);
