@@ -1,4 +1,4 @@
-import CommentForm from './CommentForm'
+import CommentForm from "./CommentForm";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Contributors from "./Contributors";
@@ -15,7 +15,7 @@ import axios from "axios";
 const IndividualProject = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
-  const currentUserString = localStorage.getItem('user');
+  const currentUserString = localStorage.getItem("user");
   const currentUser = JSON.parse(currentUserString);
   console.log("Current user: ");
   console.log(currentUser);
@@ -71,7 +71,22 @@ const IndividualProject = () => {
       <div className="header">
         <h1>{project.projectTitle}</h1>
         <p>{project.description}</p>
+        
         <div className="header-links">
+          <Stack spacing={2} direction="row" onClick={handleLike}>
+            <ColorButton variant="contained">
+              Like
+              <FavoriteBorderIcon />
+            </ColorButton>
+          </Stack>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="comment"
+          >
+            Comment
+          </a>
           <a
             href={url}
             target="_blank"
@@ -83,13 +98,24 @@ const IndividualProject = () => {
         </div>
       </div>
       <div className="project-content">
-        <div className="content-left"></div>
-        <div className="content-right"></div>
+        <div className="content-right">
+          <Contributors
+            repoUrl={"https://github.com/nimitadesh/gt-webdev-project-platform"}
+          />
+          <ProgrammingLanguages repoName={input} />
+        </div>
+        <div className="content-left">
+        <img
+            src={project.imageUrl}
+            alt={project.projectTitle}
+            width={100}
+            height={100}
+          />
+        </div>
       </div>
-      <Contributors repoUrl={'https://github.com/nimitadesh/gt-webdev-project-platform'} />
-      <ProgrammingLanguages repoName={input}/>
-      <CommentForm projectId={projectId} />
-
+      <div width={300}>
+      <CommentForm projectId={projectId} userId={currentUser._id} />
+      </div>
     </div>
   );
 };
