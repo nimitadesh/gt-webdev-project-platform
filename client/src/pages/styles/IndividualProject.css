@@ -42,7 +42,6 @@ a.github {
   background-color: #1677fa;
 }
 
-
 .project-content {
   display: flex;
   flex-direction: row-reverse;
@@ -55,7 +54,7 @@ a.github {
 .content-left {
   display: flex;
   flex-direction: column;
-  flex-basis:700px;
+  flex-basis: 700px;
   flex-grow: 1;
   padding: 1em;
   padding-top: 2em;
@@ -63,7 +62,7 @@ a.github {
 }
 
 .content-left img {
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 
@@ -74,5 +73,5 @@ a.github {
   padding-left: 1em;
   flex-grow: 1;
   padding-top: 2em;
-  background-color: #EDF2FF;
+  background-color: #edf2ff;
 }
