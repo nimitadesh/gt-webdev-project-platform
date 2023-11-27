@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import "./styles/CommentForm.css";
 
 
-function CommentForm({ projectId }) {
+function CommentForm({ projectId, userId }) {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]); // State to store comments
 
@@ -91,7 +91,7 @@ function CommentForm({ projectId }) {
             sx={{
               backgroundColor: "white",
               borderRadius: "5px",
-              input: { color: "white" },
+              input: { color: "black" },
             }}
           />
           <Button type="submit" fullWidth variant="contained" color="primary">

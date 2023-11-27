@@ -105,12 +105,17 @@ const IndividualProject = () => {
           <ProgrammingLanguages repoName={input} />
         </div>
         <div className="content-left">
-          <img src={project.imageUrl} alt={project.projectTitle} />
+        <img
+            src={project.imageUrl}
+            alt={project.projectTitle}
+            width={100}
+            height={100}
+          />
         </div>
       </div>
-      <Contributors repoUrl={'https://github.com/nimitadesh/gt-webdev-project-platform'} />
-      <ProgrammingLanguages repoName={input}/>
+      <div width={300}>
       <CommentForm projectId={projectId} userId={currentUser._id} />
+      </div>
     </div>
   );
 };
