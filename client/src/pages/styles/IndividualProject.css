@@ -41,3 +41,38 @@ a.comment {
 a.github {
   background-color: #1677fa;
 }
+
+
+.project-content {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1600px;
+  margin: auto;
+}
+
+.content-left {
+  display: flex;
+  flex-direction: column;
+  flex-basis:700px;
+  flex-grow: 1;
+  padding: 1em;
+  padding-top: 2em;
+  align-items: end;
+}
+
+.content-left img {
+  width: 100%;
+  height: auto;
+}
+
+.content-right {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100px;
+  padding-left: 1em;
+  flex-grow: 1;
+  padding-top: 2em;
+  background-color: #EDF2FF;
+}
