@@ -20,6 +20,14 @@ const getLikesbyProject = asyncHandler(async (req, res) => {
   }
 });
 
+const createNewLike = asyncHandler(async (req, res) => {
+  const { project, user, createdAt } = req.body;
+  const newLike = new Like({ project, user, createdAt });
+  const savedLike = await newLike.save();
+  res.status(201).json(savedLike);
+});
+
 module.exports = {
   getLikesbyProject,
+  createNewLike
 };

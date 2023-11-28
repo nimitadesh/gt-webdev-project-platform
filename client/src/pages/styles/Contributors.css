@@ -1,0 +1,16 @@
+.Contributors .contributor-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Contributors .contributor-card img{
+    width: 2em;
+    height: 2em;
+    border-radius: 999px;
+    margin-right: 0.5em;
+}
+
+.Contributors .contributor-card p {
+    margin: .75em;
+}
