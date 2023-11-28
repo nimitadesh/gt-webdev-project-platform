@@ -1,4 +1,4 @@
-const Like = require("../models/Likes");
+const Like = require("../models/Like");
 const asyncHandler = require("express-async-handler");
 const ObjectId = require("mongoose").Types.ObjectId;
 
@@ -29,5 +29,5 @@ const createNewLike = asyncHandler(async (req, res) => {
 
 module.exports = {
   getLikesbyProject,
-  createNewLike
+  createNewLike,
 };
