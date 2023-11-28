@@ -75,7 +75,7 @@ function CommentForm({ projectId, userId }) {
   return (
     <div className="CommentForm">
       <div className="inner-content">
-        <h2>Comments</h2>
+        <h2>Comments ({comments.length})</h2>
         <form onSubmit={handleSubmit}>
           <TextField
             margin="normal"
@@ -98,7 +98,6 @@ function CommentForm({ projectId, userId }) {
             Submit Comment
           </Button>
         </form>
-        <h3>Comments ({comments.length})</h3>
         <div>{renderComments()}</div>
       </div>
     </div>
