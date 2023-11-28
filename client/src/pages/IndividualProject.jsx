@@ -29,7 +29,7 @@ const IndividualProject = () => {
 
     fetch(`http://localhost:3001/likes/getLikes/${projectId}`)
       .then((response) => response.json())
-      .then((data) => setLikes(data.likes))
+      .then((data) => setLikes(data))
       .catch((error) => console.log(error));
   }, [projectId]);
 
