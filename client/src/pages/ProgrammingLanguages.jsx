@@ -15,7 +15,7 @@ const ProgrammingLanguages = ({ repoName }) => {
 
   return (
     <div>
-      <h1>Programming Languages:</h1>
+      <h3>Created With</h3>
       <ul>
         {languages.map((language, index) => (
           <li key={index}>{language}</li>
@@ -29,9 +29,9 @@ async function getLanguages(repoName) {
   const request = await fetch(
     `https://api.github.com/repos/${repoName}/languages`,
     {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     }
   );
@@ -54,3 +54,4 @@ async function getAllLanguages(repoName) {
 }
 
 export default ProgrammingLanguages;
+

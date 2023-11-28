@@ -32,6 +32,9 @@ async function connectToDatabase() {
 
     app.use("/users", require("./routes/userRoutes"));
     app.use("/projects", require("./routes/projectRoutes"));
+    app.use("/contributions", require("./routes/ContributionsRoutes"));
+    app.use("/likes", require("./routes/likesRoutes"));
+    app.use("/comments", require("./routes/commentRoute"));
 
     app.use("/", authRoute);
 

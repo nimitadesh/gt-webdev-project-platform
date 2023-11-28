@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import React, { useState } from "react";
 import Projects from "./pages/Projects.jsx";
 import Users from "./pages/Users.jsx";
+import UserTable from "./pages/UserTable.jsx";
 
 const testProject = {
   _id: 1,
@@ -34,6 +35,7 @@ function App() {
           }
           <Route path="/projects" element={<Projects />} />
           <Route path="/users" element={<Users />} /> 
+          <Route path="/userTable" element={<UserTable users={Users} />} />
         </Routes>
       </div>
     </BrowserRouter>

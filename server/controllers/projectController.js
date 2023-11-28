@@ -26,7 +26,26 @@ const getProjectById = asyncHandler(async (req, res) => {
     }
   });
 
+  const getLanguages = asyncHandler(async (req, res) => {
+    try {
+      const result = await Project.aggregate([
+        { $unwind: "$languages" }, 
+        { $group: { _id: "$languages" } },
+        { $group: { _id: null, languages: { $push: "$_id" } } }, 
+        { $project: { _id: 0, languages: 1 } } 
+      ]);
+
+      const languages = result.length > 0 ? result[0].languages : [];
+  
+      res.json(languages);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });  
+
 module.exports = {
   getAllProjects,
   getProjectById,
+  getLanguages,
 };
