@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import NavBar from "./NavBar"; // Import the NavBar component
-
+import UserTable from "./UserTable";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -31,11 +31,12 @@ const Users = () => {
       <NavBar />
       <h1>Users</h1>
       <ul>
-        {users.map((user) => (
+        {/* {users.map((user) => (
           <li key={user.id}>
             {user.firstName} {user.lastName} - Roles: {user.roles.join(', ')}
           </li>
-        ))}
+        ))} */}
+        <UserTable users={users} />
       </ul>
     </div>
   );
