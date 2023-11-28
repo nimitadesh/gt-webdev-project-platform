@@ -15,6 +15,7 @@ import axios from "axios";
 const IndividualProject = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
+  const [likes, setLikes] = useState(0);
   const currentUserString = localStorage.getItem("user");
   const currentUser = JSON.parse(currentUserString);
   console.log("Current user: ");
@@ -24,6 +25,11 @@ const IndividualProject = () => {
     fetch(`http://localhost:3001/projects/${projectId}`)
       .then((response) => response.json())
       .then((data) => setProject(data))
+      .catch((error) => console.log(error));
+
+    fetch(`http://localhost:3001/likes/getLikes/${projectId}`)
+      .then((response) => response.json())
+      .then((data) => setLikes(data))
       .catch((error) => console.log(error));
   }, [projectId]);
 
@@ -71,11 +77,11 @@ const IndividualProject = () => {
       <div className="header">
         <h1>{project.projectTitle}</h1>
         <p>{project.description}</p>
-        
+
         <div className="header-links">
           <Stack spacing={2} direction="row" onClick={handleLike}>
             <ColorButton variant="contained">
-              Like
+              {likes}
               <FavoriteBorderIcon />
             </ColorButton>
           </Stack>
@@ -105,7 +111,7 @@ const IndividualProject = () => {
           <ProgrammingLanguages repoName={input} />
         </div>
         <div className="content-left">
-        <img
+          <img
             src={project.imageUrl}
             alt={project.projectTitle}
             width={100}
@@ -114,7 +120,7 @@ const IndividualProject = () => {
         </div>
       </div>
       <div width={300}>
-      <CommentForm projectId={projectId} userId={currentUser._id} />
+        <CommentForm projectId={projectId} userId={currentUser._id} />
       </div>
     </div>
   );
