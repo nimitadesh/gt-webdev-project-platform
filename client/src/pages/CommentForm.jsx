@@ -98,6 +98,7 @@ function CommentForm({ projectId, userId }) {
             Submit Comment
           </Button>
         </form>
+        <h3>Comments ({comments.length})</h3>
         <div>{renderComments()}</div>
       </div>
     </div>
